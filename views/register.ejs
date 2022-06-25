@@ -1,0 +1,41 @@
+
+<%- include('header') -%>
+
+
+<div class="text-center center-div" id="login">
+    <div class="container w-25 border py-5">
+        <div class="title pb-5">
+            <h2 class="font-weight-bold">Register System</h2>
+<!--             <span>Log in for the existing user</span> -->
+            <% if(locals.error){ %>
+                <div class="alter alert-danger text-center">
+                    <%= error %>
+                </div>
+            <% } %>
+				<% if(locals.success){ %>
+					<div class="alter alert-success text-center">
+						<%= success %>
+					</div>
+				<% } %>
+        </div>
+        <form action="/register" method="POST" class="pt-3">
+			<div class="form-group">
+                <input type="username" class="form-control" placeholder="Username" name="username">
+				<small class="form-text text-muted text-left">Your username does not need to be unique.</small>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" name="email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-success rounded-pill">Submit</button>
+			<br>
+			<br>
+			<span><a href="/">Already have an account? Click here to login</a></span>
+        </form>
+    </div>
+</div>
+
+
+<%- include('footer') -%>

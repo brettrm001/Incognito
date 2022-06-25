@@ -1,0 +1,23 @@
+{
+    "main": {
+        "title": "About Incognito",
+        "data": "Access the world wide web, Incognito is an anti-censorship web service."
+    },
+    "authors": [
+        {
+            "name": "<a href=\"https://brettrm001.com\">[Admin] English Major</a>",
+            "data": "Creator of Incognito and maintainer of beta.homework-helper.studio"
+        }
+    ],
+    "socials": [
+        {
+            "name": "<a href=\"https://homework-helper.studio\">Main Website (Not Incognito)</a>",
+            "data": "Homework Helper's main/official website"
+        }
+    ],
+    "contact": [
+        {
+            "name": "<a href=\"mailto:brett@brettrm001.com\">brett@brettrm001.com</a>"
+        }
+    ]
+}

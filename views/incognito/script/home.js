@@ -24,7 +24,7 @@ function access(app) {
 
 
     
-    app.nav.account = app.createLink('#account', 'Account');
+    app.nav.account = app.createLink('#account', 'Account Settings');
     app.nav.support = app.createLink('#support', 'Support');
     app.nav.apps = app.createLink('#apps', 'Apps');
     app.nav.games = app.createLink('#gs', 'Games');

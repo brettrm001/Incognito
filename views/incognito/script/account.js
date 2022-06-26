@@ -1,6 +1,6 @@
 function account(app) {
     app.search.title.style.display = 'block';
-    app.search.title.textContent = 'Account';
+    app.search.title.textContent = 'Account Settings';
     app.search.input.style.display = 'none';
     app.main.support = app.createElement(
         'div',

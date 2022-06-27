@@ -195,7 +195,8 @@
       "img": "./img/gs/retro-bowl.jpg",
       "location": "/source/retro-bowl/",
       "category": "web",
-      "title": "Retro Bowl"
+      "title": "Retro Bowl",
+      "featured": true
     },
     {
       "img": "./img/gs/sm64.jpg",

@@ -20,7 +20,6 @@ router.get('/register', async(req, res) => {
 	// Auth Checking
 	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
 	if (model) return res.redirect('/dashboard')
-	if (model.lockReason && model?.lockReason !== "false") return res.redirect('/locked')
 	//
 	res.render('register', { title: "Homework Helper | Beta", user: req.session.user })
 })

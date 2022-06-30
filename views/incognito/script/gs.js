@@ -101,6 +101,9 @@ async function compileGs(app) {
                 background: `url(${entry.img})`,
                 'background-size': 'cover'
             },
+            props: [
+                <div class="gs-title">{entry.title}</div>
+            ],
             attrs: {
                 'data-title': entry.title,
                 'data-active': '1'

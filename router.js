@@ -3,10 +3,21 @@ var router = express.Router();
 
 const userModel = require('./models/user.js')
 const bcrypt = require('bcrypt');
+// Functions
+async function isLoggedIn(email) {
+	if (!email) return res.redirect('/login')
+	const model = await userModel.findOne({ email })
+	if (model) {
+		if (model.lockReason) return res.redirect('/locked')
+	} else {
+		return res.redirect('/login')
+	}
+	return
+}
 
 // login user
 router.post('/login', async (req, res, ) => {
-	if(req.session.user?.lockReason !== false && req.session.user?.lockReason) return res.redirect('/locked')
+	await isLoggedIn(req?.session?.user?.email || null)
 	const search = await userModel.findOne({ email: req.body.email })
 	if (!search) return res.render('base', { title: 'Homework Helper | Beta', error: "Invalid email address." })
 	bcrypt.compare(req.body.password, search.password, function(err, result) {
@@ -18,13 +29,13 @@ router.post('/login', async (req, res, ) => {
 
 // register user
 router.get('/register', (req, res) => {
-	if(req.session.user?.lockReason !== false && req.session.user?.lockReason) return res.redirect('/locked')
+	await isLoggedIn(req?.session?.user?.email || null)
 	res.render('register', { title: "Homework Helper | Beta", user: req.session.user })
 })
 
 router.post('/register', async (req, res) => {
 	if(req.session.user) return res.redirect('/')
-	if(req.session.user?.lockReason !== false && req.session.user?.lockReason) return res.redirect('/locked')
+	await isLoggedIn(req?.session?.user?.email || null)
 	const search = await userModel.findOne({ email: req.body.email })
 	if (search) return res.render('register', { title: "Homework Helper | Beta", error: "Email is already registered." })
 	// Password Hashing
@@ -43,7 +54,7 @@ router.post('/register', async (req, res) => {
 // route for dashboard
 router.get('/dashboard', (req, res) => {
 	if (req.session.user) {
-		if(req.session.user?.lockReason !== false && req.session.user?.lockReason) return res.redirect('/locked')
+		await isLoggedIn(req?.session?.user?.email || null)
 		res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
 	} else {
 		res.redirect('/')

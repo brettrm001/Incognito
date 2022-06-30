@@ -49,9 +49,6 @@ router.get('/dashboard', async(req, res) => {
 	if (!model) return res.redirect('/')
 	if (model.lockReason && model?.lockReason !== "false") return res.redirect('/locked')
 	//
-	console.log(model)
-	console.log(model.lockReason)
-	console.log(model.email)
 
 	res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
 })
@@ -69,6 +66,9 @@ router.get('/logout', async(req, res) => {
 })
 
 router.get('/locked', async(req, res) => {
+	const res = await userModel.findOne({ email: req.session.user.email })
+	if (!res || res?.lockReason !== 'false') return res.redirect('/')
+	if (!res.lockReason) return res.redirect('/')
 	if(!req.session.user || !req.session.user.lockReason) return res.redirect('/')
 	if(req.session.user.lockReason === false) return res.redirect('/') 
 	res.render('locked', { title: 'Homework Helper | Beta', user: req.session.user })

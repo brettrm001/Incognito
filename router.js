@@ -68,10 +68,9 @@ router.get('/logout', async(req, res) => {
 router.get('/locked', async(req, res) => {
 	// Auth
 	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
-	if (!model || model?.lockReason !== 'false') return res.redirect('/')
-	if (!model.lockReason || model.lockReason === 'false') return res.redirect('/')
+	if (!model || model?.lockReason === 'false' || !model.lockReason) return res.redirect('/')
 	//
-	
+
 	res.render('locked', { title: 'Homework Helper | Beta', user: req.session.user })
 })
 

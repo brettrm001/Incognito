@@ -28,7 +28,7 @@ router.post('/login', async (req, res, ) => {
 });
 
 // register user
-router.get('/register', (req, res) => {
+router.get('/register', async(req, res) => {
 	await isLoggedIn(req?.session?.user?.email || null)
 	res.render('register', { title: "Homework Helper | Beta", user: req.session.user })
 })
@@ -52,7 +52,7 @@ router.post('/register', async (req, res) => {
 })
 
 // route for dashboard
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', async(req, res) => {
 	if (req.session.user) {
 		await isLoggedIn(req?.session?.user?.email || null)
 		res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
@@ -62,7 +62,7 @@ router.get('/dashboard', (req, res) => {
 })
 
 // route for logout
-router.get('/logout', (req, res) => {
+router.get('/logout', async(req, res) => {
 	req.session.destroy(function(err) {
 		if (err) {
 			console.log(err);
@@ -73,7 +73,7 @@ router.get('/logout', (req, res) => {
 	})
 })
 
-router.get('/locked', (req, res) => {
+router.get('/locked', async(req, res) => {
 	if(!req.session.user || !req.session.user.lockReason) return res.redirect('/')
 	if(req.session.user.lockReason === false) return res.redirect('/') 
 	res.render('locked', { title: 'Homework Helper | Beta', user: req.session.user })

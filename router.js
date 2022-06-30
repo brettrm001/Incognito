@@ -6,12 +6,6 @@ const bcrypt = require('bcrypt');
 
 // login user
 router.post('/login', async (req, res, ) => {
-	// Auth Checking
-	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
-	if (!model) return res.redirect('/login')
-	if (model.lockReason) return res.redirect('/locked')
-	//
-
 	const search = await userModel.findOne({ email: req.body.email })
 	if (!search) return res.render('base', { title: 'Homework Helper | Beta', error: "Invalid email address." })
 	bcrypt.compare(req.body.password, search.password, function(err, result) {
@@ -57,7 +51,7 @@ router.get('/dashboard', async(req, res) => {
 	if (!model) return res.redirect('/login')
 	if (model.lockReason) return res.redirect('/locked')
 	//
-	
+
 	res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
 })
 

@@ -52,6 +52,7 @@ router.get('/dashboard', async(req, res) => {
 	if (model.lockReason) return res.redirect('/locked')
 	//
 	console.log(model)
+	console.log(model.lockReason)
 
 	res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
 })

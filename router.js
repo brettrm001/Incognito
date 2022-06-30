@@ -15,7 +15,7 @@ router.post('/login', async (req, res, ) => {
 	});
 });
 
-// register user
+// Register user
 router.get('/register', async(req, res) => {
 	// Auth Checking
 	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })

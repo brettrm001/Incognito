@@ -95,7 +95,6 @@ async function compileGs(app) {
     };
 
     for (const entry of json) {
-        const elem2 = app.createElement('p', null, entry.title)
         const elem = app.createElement('div', [], {
             class: 'gs-entry',
             style: {

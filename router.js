@@ -36,7 +36,8 @@ router.post('/register', async (req, res) => {
 		await new userModel({
 			email: req.body.email,
 			username: req.body.username,
-			password: hash
+			password: hash,
+			lockReason: "Your account is not verified. Please wait for a staff member to contact you about your verification. Otherwise, you can directly contact a staff member to expedite this process."
 		}).save()
 	});
 	//

@@ -14,6 +14,7 @@ const userModel = new mongoose.Schema({
   username: reqString,
   email: reqString,
   password: reqString,
+  lockReason: reqString,
 }, {
   timestamps: true
 })

@@ -5,17 +5,17 @@ const reqString = {
   required: true,
 }
 const reqNumber = {
-    type: Number,
-    required: true
+  type: Number,
+  required: true
 }
 //
 
 const userModel = new mongoose.Schema({
-    username: reqString,
-	email: reqString,
-	password: reqString,
+  username: reqString,
+  email: reqString,
+  password: reqString,
 }, {
-	timestamps: true
+  timestamps: true
 })
 const name = 'users'
 

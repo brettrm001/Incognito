@@ -4,7 +4,7 @@ var router = express.Router();
 const userModel = require('./models/user.js')
 const bcrypt = require('bcrypt');
 // Functions
-async function isLoggedIn(email) {
+async function isLoggedIn(email, res) {
 	if (!email) return res.redirect('/login')
 	const model = await userModel.findOne({ email })
 	if (model) {
@@ -17,7 +17,7 @@ async function isLoggedIn(email) {
 
 // login user
 router.post('/login', async (req, res, ) => {
-	await isLoggedIn(req?.session?.user?.email || null)
+	await isLoggedIn(req?.session?.user?.email || null, res)
 	const search = await userModel.findOne({ email: req.body.email })
 	if (!search) return res.render('base', { title: 'Homework Helper | Beta', error: "Invalid email address." })
 	bcrypt.compare(req.body.password, search.password, function(err, result) {

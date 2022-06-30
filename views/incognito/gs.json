@@ -1,5 +1,14 @@
 [
     {
+      "img": "",
+      "location": "/source/slope/index.html",
+      "title": "Slope",
+      "description": "Slope is the ultimate running game that will put your skills to the test. Speed down on a randomized slope. The farther you go, the faster your ball travels. This game might look simple but playing this will give you extreme adrenaline rush. Just remember to avoid obstacles and those red blocks. Always be on track to get a high score and you might have your name on the leaderboard!",
+      "author": "Rob Kay (Individual)",
+      "category": "web",
+      "featured": true
+    },
+    {
       "img": "./img/gs/krk.png",
       "location": "./load.html#a3J1bmtlci5pbw%3D%3D",
       "title": "Krunker.io",
@@ -196,7 +205,7 @@
       "location": "/source/retro-bowl/",
       "category": "web",
       "title": "Retro Bowl",
-      "featured": true
+      "featured": false
     },
     {
       "img": "./img/gs/sm64.jpg",

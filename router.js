@@ -19,7 +19,7 @@ router.post('/login', async (req, res, ) => {
 router.get('/register', async(req, res) => {
 	// Auth Checking
 	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
-	if (!model) return res.redirect('/login')
+	if (!model) return res.redirect('/')
 	if (model) return res.redirect('/dashboard')
 	if (model.lockReason) return res.redirect('/locked')
 	//
@@ -48,7 +48,7 @@ router.post('/register', async (req, res) => {
 router.get('/dashboard', async(req, res) => {
 	// Auth Checking
 	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
-	if (!model) return res.redirect('/login')
+	if (!model) return res.redirect('/')
 	if (model.lockReason) return res.redirect('/locked')
 	//
 

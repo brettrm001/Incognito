@@ -53,6 +53,7 @@ router.get('/dashboard', async(req, res) => {
 	//
 	console.log(model)
 	console.log(model.lockReason)
+	console.log(model.email)
 
 	res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
 })

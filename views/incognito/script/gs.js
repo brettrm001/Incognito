@@ -98,7 +98,6 @@ async function compileGs(app) {
         const elem = app.createElement('div', [app.createElement('span', entry.title, {
             style: {
                 'background-color': 'black',
-                'margin-top': '-=15'
             }
         })], {
             class: 'gs-entry',

@@ -14,7 +14,9 @@ function account(app) {
             ], {
                 class: 'data-section'
             }),
-
+            app.createElement('section', [
+                app.createElement('p', 'Password Resets, Email Changes, Username Changes coming soon!')
+            ])
         ]);
     app.search.back.style.display = 'inline';
     app.search.back.setAttribute(

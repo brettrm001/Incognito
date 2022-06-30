@@ -3,21 +3,15 @@ var router = express.Router();
 
 const userModel = require('./models/user.js')
 const bcrypt = require('bcrypt');
-// Functions
-async function isLoggedIn(email, res) {
-	if (!email) return res.redirect('/login')
-	const model = await userModel.findOne({ email })
-	if (model) {
-		if (model.lockReason) return res.redirect('/locked')
-	} else {
-		return res.redirect('/login')
-	}
-	return
-}
 
 // login user
 router.post('/login', async (req, res, ) => {
-	await isLoggedIn(req?.session?.user?.email || null, res)
+	// Auth Checking
+	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
+	if (!model) return res.redirect('/login')
+	if (model.lockReason) return res.redirect('/locked')
+	//
+
 	const search = await userModel.findOne({ email: req.body.email })
 	if (!search) return res.render('base', { title: 'Homework Helper | Beta', error: "Invalid email address." })
 	bcrypt.compare(req.body.password, search.password, function(err, result) {
@@ -29,7 +23,12 @@ router.post('/login', async (req, res, ) => {
 
 // register user
 router.get('/register', async(req, res) => {
-	await isLoggedIn(req?.session?.user?.email || null)
+	// Auth Checking
+	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
+	if (!model) return res.redirect('/login')
+	if (model) return res.redirect('/dashboard')
+	if (model.lockReason) return res.redirect('/locked')
+	//
 	res.render('register', { title: "Homework Helper | Beta", user: req.session.user })
 })
 
@@ -53,12 +52,13 @@ router.post('/register', async (req, res) => {
 
 // route for dashboard
 router.get('/dashboard', async(req, res) => {
-	if (req.session.user) {
-		await isLoggedIn(req?.session?.user?.email || null)
-		res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
-	} else {
-		res.redirect('/')
-	}
+	// Auth Checking
+	const model = await userModel.findOne({ email: req?.session?.user?.email || 'null' })
+	if (!model) return res.redirect('/login')
+	if (model.lockReason) return res.redirect('/locked')
+	//
+	
+	res.render('incognito/index', { title: "Homework Helper | Beta", user: req.session.user })
 })
 
 // route for logout

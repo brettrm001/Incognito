@@ -27,7 +27,6 @@ router.get('/register', async(req, res) => {
 
 router.post('/register', async (req, res) => {
 	if(req.session.user) return res.redirect('/')
-	await isLoggedIn(req?.session?.user?.email || null)
 	const search = await userModel.findOne({ email: req.body.email })
 	if (search) return res.render('register', { title: "Homework Helper | Beta", error: "Email is already registered." })
 	// Password Hashing

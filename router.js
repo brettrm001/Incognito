@@ -71,7 +71,7 @@ router.get('/locked', async(req, res) => {
 	if (!model || model?.lockReason === 'false' || !model.lockReason) return res.redirect('/')
 	//
 
-	res.render('locked', { title: 'Homework Helper | Beta', user: req.session.user })
+	res.render('locked', { title: 'Homework Helper | Beta', user: req.session.user, lockReason: model.lockReason })
 })
 
 module.exports = router;
